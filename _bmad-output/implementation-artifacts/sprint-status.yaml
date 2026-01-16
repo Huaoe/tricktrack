@@ -52,18 +52,18 @@ development_status:
   1-4-set-up-hardhat-for-smart-contract-development: review
   1-5-create-shared-typescript-types-package: review
   1-6-set-up-shadcn-ui-components-package: review
-  1-7-configure-shared-eslint-typescript-and-tailwind-configs: ready-for-dev
+  1-7-configure-shared-eslint-typescript-and-tailwind-configs: review
   1-8-set-up-deployment-pipelines-vercel-railway-polygon: ready-for-dev
   epic-1-retrospective: optional
 
   # Epic 2: Wallet Connection & User Authentication
-  epic-2: backlog
-  2-1-integrate-web3auth-for-in-app-wallet-creation: backlog
-  2-2-integrate-web3modal-for-external-wallet-connection: backlog
-  2-3-implement-social-recovery-for-in-app-wallets: backlog
-  2-4-display-wallet-address-and-copy-to-clipboard: backlog
-  2-5-export-private-key-or-seed-phrase-securely: backlog
-  2-6-implement-session-management-and-auto-logout: backlog
+  epic-2: in-progress
+  2-1-integrate-web3auth-for-in-app-wallet-creation: ready-for-dev
+  2-2-integrate-web3modal-for-external-wallet-connection: ready-for-dev
+  2-3-implement-social-recovery-for-in-app-wallets: ready-for-dev
+  2-4-display-wallet-address-and-copy-to-clipboard: ready-for-dev
+  2-5-export-private-key-or-seed-phrase-securely: ready-for-dev
+  2-6-implement-session-management-and-auto-logout: ready-for-dev
   epic-2-retrospective: optional
 
   # Epic 3: Friend Connection Network via QR Codes

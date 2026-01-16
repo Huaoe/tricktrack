@@ -1,0 +1,23 @@
+{
+  "name": "@tricktrack/config",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Shared ESLint, TypeScript, and Tailwind configurations",
+  "exports": {
+    "./eslint": "./eslint.config.js",
+    "./typescript/base": "./tsconfig.base.json",
+    "./typescript/react": "./tsconfig.react.json",
+    "./typescript/node": "./tsconfig.node.json",
+    "./tailwind": "./tailwind.config.base.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9",
+    "eslint": "^9",
+    "eslint-config-next": "^16.1.2",
+    "eslint-config-prettier": "^10.0.1",
+    "typescript": "^5",
+    "typescript-eslint": "^8.20.0",
+    "tailwindcss": "^4"
+  }
+}
