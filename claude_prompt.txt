@@ -61,14 +61,14 @@ Focus ONLY on these epics: Epic1
 - THEN:
   * Update story status in sprint-status.yaml: 'ready-for-dev' → 'review'
   * Update story file header: Status: review
+  * Make final git commit: '[story-id] Story complete - moved to review'
   * Output: <promise>STORY-COMPLETE: [story-id]</promise>
-  * Move to next highest priority 'ready-for-dev' story WITHIN EPIC SCOPE
-## 7. Epic/Final Completion
-- When all stories in current epic reach 'review' or 'done' status:
-  * Output: <promise>EPIC-COMPLETE: Epic [N]</promise>
-  * Move to next epic in scope (if multiple epics specified)
-- When ALL specified epics are complete:
-  * Output: <promise>COMPLETE</promise>
+  * **EXIT IMMEDIATELY** - Do NOT start the next story
+## 7. Single Story Per Session Rule
+- **CRITICAL**: Complete ONLY ONE story per session
+- After completing a story and outputting <promise>STORY-COMPLETE</promise>, EXIT
+- The script will launch a new Claude Code instance for the next story
+- This ensures clean state and proper story isolation
 ## CRITICAL RULES:
 - NEVER implement anything not explicitly listed in Tasks/Subtasks
 - NEVER mark task complete without passing tests
