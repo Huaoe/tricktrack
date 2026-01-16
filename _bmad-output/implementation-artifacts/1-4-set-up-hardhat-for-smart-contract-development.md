@@ -1,6 +1,6 @@
 # Story 1.4: Set Up Hardhat for Smart Contract Development
 
-Status: ready-for-dev
+Status: review
 
 ## Story
 
