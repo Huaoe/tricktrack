@@ -9,8 +9,6 @@ node_modules/
 .pnpm/
 .pnpm-state.json
 
-ralph.sh
-
 # Testing
 coverage/
 .nyc_output/

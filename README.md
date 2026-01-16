@@ -256,9 +256,9 @@ cd tricktrack
 # Install dependencies
 pnpm install
 
-# Set up environment variables
-cp .env.example .env.local
-# Edit .env.local with your API keys
+# Set up environment variables for Ralph Wiggum
+cp .env.example .env
+# Edit .env with your Anthropic API key
 
 # Run development servers (all apps)
 pnpm dev
@@ -270,12 +270,22 @@ pnpm dev --filter=api    # Backend only
 
 ### Environment Variables
 
-Create `.env.local` in the root:
+#### For Ralph Wiggum (Autonomous Development)
+
+Create a `.env` file in the project root:
 
 ```bash
-# Anthropic API (for Ralph Wiggum)
+# Required: Anthropic API key for Ralph Wiggum
 ANTHROPIC_API_KEY=sk-ant-api03-...
+```
 
+**Important**: The `.env` file is gitignored and will never be committed to the repository. Ralph automatically loads this file when running.
+
+#### For Application Development
+
+Create `.env.local` files in each app directory as needed:
+
+```bash
 # Blockchain
 ALCHEMY_API_KEY=your_alchemy_key
 INFURA_API_KEY=your_infura_key
@@ -344,10 +354,15 @@ Ralph runs Claude Code in an isolated Docker container with access only to this 
 
 Ralph uses:
 - **Container**: Persistent Docker container (`ralph-claude-dev`)
-- **API**: Anthropic Claude API (set `ANTHROPIC_API_KEY`)
+- **API**: Anthropic Claude API (loaded from `.env` file)
 - **Context**: Full repository access at `/workspace`
 - **Isolation**: No access to files outside repository
 - **Resources**: 2 CPUs, 4GB RAM, 200 process limit
+
+**Setup Requirements**:
+1. Create a `.env` file in the project root
+2. Add your Anthropic API key: `ANTHROPIC_API_KEY=sk-ant-api03-...`
+3. The `.env` file is automatically loaded by `ralph.sh` (never committed to git)
 
 ### Epic-by-Epic Development Strategy
 
