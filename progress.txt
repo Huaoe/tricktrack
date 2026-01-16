@@ -508,3 +508,109 @@ Blockers: None
 
 Next Story: 1-6 (Set up shadcn-ui components package)
 
+
+=== Story 1-6: Set Up shadcn/ui Components Package ===
+Date: 2026-01-16
+Status: COMPLETE - All tasks finished, story ready for review
+
+Tasks Completed:
+1. Initialize UI package
+   - Created package.json with @tricktrack/ui
+   - Installed React 19.2.3, TypeScript, and all dependencies
+   - pnpm install completed successfully
+
+2. Set up Tailwind CSS
+   - Installed @tailwindcss/postcss for Tailwind v4
+   - Created postcss.config.js
+   - Created src/styles/globals.css with shadcn/ui color system using @theme inline
+
+3. Initialize shadcn/ui
+   - Installed class-variance-authority, clsx, tailwind-merge
+   - Created src/lib/utils.ts with cn() helper function
+   - Set up component structure
+
+4. Install Radix UI primitives
+   - Installed @radix-ui/react-slot
+   - Installed @radix-ui/react-dialog
+   - Installed @radix-ui/react-dropdown-menu
+
+5. Add base components
+   - Created Button component with variants (default, destructive, outline, secondary, ghost, link)
+   - Created Card component with CardHeader, CardTitle, CardDescription, CardContent, CardFooter
+   - Created Input component with proper form styling
+   - Created Dialog component with Radix UI primitives
+
+6. Configure TypeScript
+   - Created tsconfig.json with React JSX, strict mode, ES2020 target
+   - Configured path aliases (@/*)
+   - Build generates .d.ts declaration files
+   - Build script: pnpm build (runs tsc)
+
+7. Set up exports
+   - Created src/index.ts with all component exports
+   - Configured package.json exports for components and styles
+   - Build output in dist/ directory
+
+8. Configure workspace integration
+   - Added @tricktrack/ui to apps/web/package.json
+   - Imported styles in apps/web/src/app/layout.tsx
+   - Ran pnpm install to link workspace packages
+   - No separate Tailwind config needed (Tailwind v4 uses CSS-based config)
+
+9. Verify component rendering
+   - Updated apps/web/src/app/page.tsx to use Button and Card components
+   - Next.js production build successful
+   - TypeScript compilation passed (pnpm tsc --noEmit)
+   - All component variants working correctly
+
+Files Created:
+- packages/ui/package.json
+- packages/ui/tsconfig.json
+- packages/ui/postcss.config.js
+- packages/ui/src/styles/globals.css
+- packages/ui/src/lib/utils.ts
+- packages/ui/src/components/ui/button.tsx
+- packages/ui/src/components/ui/card.tsx
+- packages/ui/src/components/ui/input.tsx
+- packages/ui/src/components/ui/dialog.tsx
+- packages/ui/src/index.ts
+- packages/ui/dist/ (TypeScript build output)
+
+Files Modified:
+- apps/web/package.json
+- apps/web/src/app/layout.tsx
+- apps/web/src/app/page.tsx
+
+Technical Decisions:
+- Used Tailwind v4 CSS-based configuration (@theme inline) instead of tailwind.config.ts
+- React 19.2.3 aligned with apps/web for consistency
+- All components follow shadcn/ui patterns and conventions
+- Minimum touch target size: 44px (mobile-first design)
+- TypeScript strict mode enabled
+- Declaration maps generated for better IDE support
+
+Dependencies Added:
+- @radix-ui/react-dialog: ^1.1.2
+- @radix-ui/react-dropdown-menu: ^2.1.2
+- @radix-ui/react-slot: ^1.1.1
+- class-variance-authority: ^0.7.0
+- clsx: ^2.1.1
+- tailwind-merge: ^2.6.0
+- react: 19.2.3
+- react-dom: 19.2.3
+- @tailwindcss/postcss: ^4.1.18
+- tailwindcss: ^4
+- typescript: ^5
+
+Verification Status:
+✅ UI package builds successfully
+✅ TypeScript compilation passes
+✅ Components render in Next.js app
+✅ Tailwind styles apply correctly
+✅ Component variants work as expected
+✅ Production build successful
+
+Blockers: None
+
+Next Story: 1-7 (Configure shared ESLint, TypeScript, and Tailwind configs)
+

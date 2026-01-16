@@ -51,7 +51,7 @@ development_status:
   1-3-set-up-nestjs-backend-in-apps-api: review
   1-4-set-up-hardhat-for-smart-contract-development: review
   1-5-create-shared-typescript-types-package: review
-  1-6-set-up-shadcn-ui-components-package: ready-for-dev
+  1-6-set-up-shadcn-ui-components-package: review
   1-7-configure-shared-eslint-typescript-and-tailwind-configs: ready-for-dev
   1-8-set-up-deployment-pipelines-vercel-railway-polygon: ready-for-dev
   epic-1-retrospective: optional

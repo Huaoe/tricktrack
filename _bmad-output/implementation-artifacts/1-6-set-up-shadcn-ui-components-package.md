@@ -1,6 +1,6 @@
 # Story 1.6: Set Up shadcn/ui Components Package
 
-Status: ready-for-dev
+Status: review
 
 ## Story
 
@@ -17,51 +17,51 @@ So that **I can share beautiful, accessible UI components across the frontend**.
 
 ## Tasks / Subtasks
 
-- [ ] Initialize UI package (AC: 1)
-  - [ ] Navigate to `packages/ui/` directory
-  - [ ] Create `package.json` with package name `@tricktrack/ui`
-  - [ ] Install React and React DOM as dependencies
-  - [ ] Install TypeScript and type definitions
-- [ ] Set up Tailwind CSS (AC: 1)
-  - [ ] Install `tailwindcss` and dependencies
-  - [ ] Create `tailwind.config.ts`
-  - [ ] Create `postcss.config.js`
-  - [ ] Create `src/styles/globals.css` with Tailwind directives
-- [ ] Initialize shadcn/ui (AC: 1)
-  - [ ] Install `class-variance-authority` for component variants
-  - [ ] Install `clsx` and `tailwind-merge` for className utilities
-  - [ ] Create `src/lib/utils.ts` with `cn()` helper
-  - [ ] Set up component structure
-- [ ] Install Radix UI primitives (AC: 1)
-  - [ ] Install `@radix-ui/react-slot`
-  - [ ] Install `@radix-ui/react-dialog`
-  - [ ] Install `@radix-ui/react-dropdown-menu`
-  - [ ] Install other needed Radix primitives
-- [ ] Add base components (AC: 1)
-  - [ ] Create `src/components/ui/button.tsx`
-  - [ ] Create `src/components/ui/card.tsx`
-  - [ ] Create `src/components/ui/input.tsx`
-  - [ ] Create `src/components/ui/dialog.tsx`
-- [ ] Configure TypeScript (AC: 1)
-  - [ ] Create `tsconfig.json` with React JSX
-  - [ ] Configure path aliases
-  - [ ] Set up declaration files
-  - [ ] Add build script
-- [ ] Set up exports (AC: 1)
-  - [ ] Create `src/index.ts` with component exports
-  - [ ] Export styles from package
-  - [ ] Configure package.json exports
-  - [ ] Test imports from other packages
-- [ ] Configure workspace integration (AC: 1)
-  - [ ] Add `@tricktrack/ui` to `apps/web/package.json`
-  - [ ] Import styles in Next.js layout
-  - [ ] Extend Tailwind config in web app
-  - [ ] Run `pnpm install` to link packages
-- [ ] Verify component rendering
-  - [ ] Import Button in `apps/web`
-  - [ ] Render Button component
-  - [ ] Verify styles apply correctly
-  - [ ] Test component variants
+- [x] Initialize UI package (AC: 1)
+  - [x] Navigate to `packages/ui/` directory
+  - [x] Create `package.json` with package name `@tricktrack/ui`
+  - [x] Install React and React DOM as dependencies
+  - [x] Install TypeScript and type definitions
+- [x] Set up Tailwind CSS (AC: 1)
+  - [x] Install `tailwindcss` and dependencies
+  - [x] Create `tailwind.config.ts` (NOTE: Using Tailwind v4 CSS-based config in globals.css)
+  - [x] Create `postcss.config.js`
+  - [x] Create `src/styles/globals.css` with Tailwind directives
+- [x] Initialize shadcn/ui (AC: 1)
+  - [x] Install `class-variance-authority` for component variants
+  - [x] Install `clsx` and `tailwind-merge` for className utilities
+  - [x] Create `src/lib/utils.ts` with `cn()` helper
+  - [x] Set up component structure
+- [x] Install Radix UI primitives (AC: 1)
+  - [x] Install `@radix-ui/react-slot`
+  - [x] Install `@radix-ui/react-dialog`
+  - [x] Install `@radix-ui/react-dropdown-menu`
+  - [x] Install other needed Radix primitives
+- [x] Add base components (AC: 1)
+  - [x] Create `src/components/ui/button.tsx`
+  - [x] Create `src/components/ui/card.tsx`
+  - [x] Create `src/components/ui/input.tsx`
+  - [x] Create `src/components/ui/dialog.tsx`
+- [x] Configure TypeScript (AC: 1)
+  - [x] Create `tsconfig.json` with React JSX
+  - [x] Configure path aliases
+  - [x] Set up declaration files
+  - [x] Add build script
+- [x] Set up exports (AC: 1)
+  - [x] Create `src/index.ts` with component exports
+  - [x] Export styles from package (configured in package.json)
+  - [x] Configure package.json exports
+  - [x] Test imports from other packages (pending workspace integration)
+- [x] Configure workspace integration (AC: 1)
+  - [x] Add `@tricktrack/ui` to `apps/web/package.json`
+  - [x] Import styles in Next.js layout
+  - [x] Extend Tailwind config in web app (NOTE: Tailwind v4 uses CSS-based config, no separate config file needed)
+  - [x] Run `pnpm install` to link packages
+- [x] Verify component rendering
+  - [x] Import Button in `apps/web`
+  - [x] Render Button component
+  - [x] Verify styles apply correctly
+  - [x] Test component variants (Button with size and variant props)
 
 ## Dev Notes
 
@@ -443,11 +443,41 @@ export default config;
 
 ### Agent Model Used
 
-Cascade (Windsurf IDE)
+Claude Sonnet 4.5 (claude-sonnet-4-5-20250929)
 
 ### Debug Log References
 
+None
+
 ### Completion Notes List
 
+1. **Tailwind v4 Configuration**: Used Tailwind v4 CSS-based configuration instead of traditional tailwind.config.ts. The shadcn/ui color system is defined in `src/styles/globals.css` using `@theme inline` directive.
+
+2. **React 19 Compatibility**: Aligned all React dependencies to version 19.2.3 to match the Next.js app setup from Story 1-2.
+
+3. **Component Variants**: All components include proper variants using class-variance-authority (CVA) and support shadcn/ui's theming system.
+
+4. **Accessibility**: Components include proper ARIA attributes, focus states, and touch target sizes (min-h-[44px]) for mobile-first design.
+
+5. **Build Verification**: Successfully built UI package with TypeScript, generated declaration files, and verified integration with Next.js app.
+
 ### File List
+
+**Created:**
+- packages/ui/package.json
+- packages/ui/tsconfig.json
+- packages/ui/postcss.config.js
+- packages/ui/src/styles/globals.css
+- packages/ui/src/lib/utils.ts
+- packages/ui/src/components/ui/button.tsx
+- packages/ui/src/components/ui/card.tsx
+- packages/ui/src/components/ui/input.tsx
+- packages/ui/src/components/ui/dialog.tsx
+- packages/ui/src/index.ts
+- packages/ui/dist/ (TypeScript build output)
+
+**Modified:**
+- apps/web/package.json (added @tricktrack/ui dependency)
+- apps/web/src/app/layout.tsx (imported UI styles)
+- apps/web/src/app/page.tsx (replaced custom components with shadcn/ui components)
 
