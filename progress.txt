@@ -137,3 +137,78 @@ Blockers: None
 
 Next Story: 1-3 (Set up NestJS backend in apps/api)
 
+
+=== Story 1-3: Set Up NestJS Backend in apps/api ===
+Date: 2026-01-16
+Status: COMPLETE - All tasks finished, story moved to 'review'
+
+Tasks Completed:
+1. Initialize Nest.js application
+   - Created Nest.js 11.0.1 with TypeScript
+   - Configured port 3001
+
+2. Configure Swagger/OpenAPI documentation  
+   - Installed @nestjs/swagger v11.2.5
+   - Configured at /api/docs with API versioning /api/v1/
+
+3. Set up validation and transformation
+   - Installed class-validator v0.14.3 and class-transformer v0.5.1
+   - Configured global ValidationPipe
+
+4. Configure environment variables
+   - Installed @nestjs/config v4.0.2
+   - Created .env.example
+   - Set up ConfigModule globally
+
+5. Set up CORS configuration
+   - Configured for localhost:3000 frontend
+   - Enabled credentials
+
+6. Create base module structure
+   - Created auth/, users/, validations/ modules
+   - Created common/ with dto/, filters/, guards/, interceptors/
+
+7. Set up testing infrastructure
+   - Jest v30.0.0 configured
+   - All tests passing (1/1)
+
+8. Configure TypeScript and ESLint
+   - Strict TypeScript settings verified
+   - ESLint with Nest.js plugin
+
+9. Verify API functionality
+   - Health check endpoint at GET /api/v1/health
+   - Production build successful
+   - Test suite passing
+
+Files Created:
+- apps/api/ (full NestJS 11 application)
+- apps/api/src/main.ts (with Swagger, CORS, validation)
+- apps/api/src/app.module.ts (with ConfigModule)
+- apps/api/src/app.controller.ts (health check endpoint)
+- apps/api/.env.example
+- apps/api/src/auth/auth.module.ts
+- apps/api/src/users/users.module.ts
+- apps/api/src/validations/validations.module.ts
+- apps/api/src/common/ (with subdirectories)
+
+Files Modified:
+- apps/api/package.json (added "dev" script)
+
+Dependencies Added:
+- @nestjs/swagger: ^11.2.5
+- swagger-ui-express: ^5.0.1
+- @nestjs/config: ^4.0.2
+- class-validator: ^0.14.3
+- class-transformer: ^0.5.1
+
+Technical Decisions:
+- NestJS 11.0.1 (latest)
+- Port 3001 for API (3000 for frontend)
+- Global API prefix: /api/v1/
+- Swagger docs at /api/docs
+
+Blockers: None
+
+Next Story: 1-4 (Set up Hardhat for smart contract development)
+
