@@ -1,0 +1,56 @@
+=== Story 1-1: Initialize Turborepo Monorepo with pnpm Workspaces ===
+Date: 2026-01-16
+Status: COMPLETE - All tasks finished, story moved to 'review'
+
+Tasks Completed:
+1. Initialize monorepo root structure
+   - Created .gitignore with comprehensive exclusions
+   - Updated package.json with monorepo configuration and scripts
+   - Verified turbo 2.7.4 installation
+
+2. Configure pnpm workspace
+   - Created pnpm-workspace.yaml with apps/* and packages/* patterns
+   - Verified workspace configuration
+
+3. Configure Turborepo pipelines
+   - Created turbo.json with tasks: build, test, lint, dev, clean
+   - IMPORTANT: Used 'tasks' field (Turbo 2.x) instead of deprecated 'pipeline'
+   - Configured caching and task dependencies
+
+4. Create workspace directory structure
+   - Created apps/web/, apps/api/
+   - Created packages/contracts/, packages/types/, packages/ui/, packages/config/
+   - Added .gitkeep files to all directories
+
+5. Add root-level scripts
+   - All scripts added: dev, build, test, lint, clean
+   - All use 'turbo run' for task orchestration
+
+6. Verify monorepo setup
+   - pnpm install: SUCCESS
+   - Turbo cache created at .turbo/cache/
+   - Dry-run tests: PASS
+
+Files Created:
+- .gitignore
+- pnpm-workspace.yaml
+- turbo.json
+- apps/web/.gitkeep
+- apps/api/.gitkeep
+- packages/contracts/.gitkeep
+- packages/types/.gitkeep
+- packages/ui/.gitkeep
+- packages/config/.gitkeep
+
+Files Modified:
+- package.json
+
+Technical Decisions:
+- Used Turbo 2.x 'tasks' syntax instead of 'pipeline'
+- pnpm version: 10.22.0
+- Turbo version: 2.7.4
+
+Blockers: None
+
+Next Story: 1-2 (Set up Next.js 15 PWA in apps/web)
+

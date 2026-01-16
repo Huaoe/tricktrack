@@ -1,6 +1,6 @@
 # Story 1.1: Initialize Turborepo Monorepo with pnpm Workspaces
 
-Status: ready-for-dev
+Status: review
 
 ## Story
 
@@ -18,35 +18,35 @@ So that **I can manage multiple packages and apps with shared dependencies effic
 
 ## Tasks / Subtasks
 
-- [ ] Initialize monorepo root structure (AC: 1)
-  - [ ] Create project root directory
-  - [ ] Initialize root `package.json` with pnpm packageManager
-  - [ ] Install Turborepo v2.x as dev dependency
-  - [ ] Create `.gitignore` with node_modules, dist, .turbo, .next exclusions
-- [ ] Configure pnpm workspace (AC: 1)
-  - [ ] Create `pnpm-workspace.yaml` with apps/* and packages/* patterns
-  - [ ] Verify workspace configuration
-- [ ] Configure Turborepo pipelines (AC: 1)
-  - [ ] Create `turbo.json` with dev, build, test, lint pipelines
-  - [ ] Configure caching for build outputs
-  - [ ] Set up task dependencies (build before test)
-- [ ] Create workspace directory structure (AC: 1)
-  - [ ] Create `apps/web/` directory
-  - [ ] Create `apps/api/` directory
-  - [ ] Create `packages/contracts/` directory
-  - [ ] Create `packages/types/` directory
-  - [ ] Create `packages/ui/` directory
-  - [ ] Create `packages/config/` directory
-- [ ] Add root-level scripts (AC: 1)
-  - [ ] Add `dev` script to run all workspaces in dev mode
-  - [ ] Add `build` script for production builds
-  - [ ] Add `test` script for running all tests
-  - [ ] Add `lint` script for code quality checks
-  - [ ] Add `clean` script to remove build artifacts
-- [ ] Verify monorepo setup
-  - [ ] Run `pnpm install` successfully
-  - [ ] Verify Turborepo cache is working
-  - [ ] Test workspace scripts execute correctly
+- [x] Initialize monorepo root structure (AC: 1)
+  - [x] Create project root directory
+  - [x] Initialize root `package.json` with pnpm packageManager
+  - [x] Install Turborepo v2.x as dev dependency
+  - [x] Create `.gitignore` with node_modules, dist, .turbo, .next exclusions
+- [x] Configure pnpm workspace (AC: 1)
+  - [x] Create `pnpm-workspace.yaml` with apps/* and packages/* patterns
+  - [x] Verify workspace configuration
+- [x] Configure Turborepo pipelines (AC: 1)
+  - [x] Create `turbo.json` with dev, build, test, lint pipelines
+  - [x] Configure caching for build outputs
+  - [x] Set up task dependencies (build before test)
+- [x] Create workspace directory structure (AC: 1)
+  - [x] Create `apps/web/` directory
+  - [x] Create `apps/api/` directory
+  - [x] Create `packages/contracts/` directory
+  - [x] Create `packages/types/` directory
+  - [x] Create `packages/ui/` directory
+  - [x] Create `packages/config/` directory
+- [x] Add root-level scripts (AC: 1)
+  - [x] Add `dev` script to run all workspaces in dev mode
+  - [x] Add `build` script for production builds
+  - [x] Add `test` script for running all tests
+  - [x] Add `lint` script for code quality checks
+  - [x] Add `clean` script to remove build artifacts
+- [x] Verify monorepo setup
+  - [x] Run `pnpm install` successfully
+  - [x] Verify Turborepo cache is working
+  - [x] Test workspace scripts execute correctly
 
 ## Dev Notes
 
@@ -196,11 +196,74 @@ tricktrack/
 
 ### Agent Model Used
 
-Cascade (Windsurf IDE)
+Claude Sonnet 4.5 (via Claude Code)
 
 ### Debug Log References
 
+None - implementation completed without issues
+
 ### Completion Notes List
 
+**2026-01-16 - Story 1.1 Implementation Complete**
+
+All tasks completed successfully:
+
+1. **Initialize monorepo root structure**
+   - Created comprehensive `.gitignore` with all necessary exclusions (node_modules, dist, .turbo, .next, env files, IDE files)
+   - Updated `package.json` with monorepo name, private flag, and all root scripts
+   - Turbo 2.7.4 already installed as dev dependency
+   - Verified installation with `pnpm install`
+
+2. **Configure pnpm workspace**
+   - Created `pnpm-workspace.yaml` with apps/* and packages/* patterns
+   - Workspace configuration verified with successful pnpm install
+
+3. **Configure Turborepo pipelines**
+   - Created `turbo.json` with all required tasks: build, test, lint, dev, clean
+   - **IMPORTANT**: Used `tasks` field instead of deprecated `pipeline` field (Turbo 2.x requirement)
+   - Configured caching for build outputs and coverage
+   - Set up task dependencies (build runs before test, with ^build dependency)
+   - Verified configuration with dry-run test
+
+4. **Create workspace directory structure**
+   - Created all 6 workspace directories: apps/web, apps/api, packages/contracts, packages/types, packages/ui, packages/config
+   - Added .gitkeep files to ensure empty directories are tracked in git
+
+5. **Add root-level scripts**
+   - All scripts added to package.json: dev, build, test, lint, clean
+   - All scripts use turbo run for monorepo task orchestration
+
+6. **Verify monorepo setup**
+   - `pnpm install` runs successfully
+   - Turbo cache directory created at `.turbo/cache/`
+   - Dry-run tests confirm turbo.json is valid
+   - Workspace scripts execute correctly
+
+**Technical Notes:**
+- Turbo 2.x uses `tasks` field instead of `pipeline` (migration from v1)
+- Package manager version: pnpm@10.22.0
+- Turbo version: 2.7.4
+- Monorepo is ready for subsequent stories to add package implementations
+
+**Acceptance Criteria Verification:**
+✅ All workspace directories created (apps/web, apps/api, packages/*)
+✅ turbo.json configured with build pipelines
+✅ pnpm-workspace.yaml defines all workspace paths
+✅ pnpm install runs successfully
+
 ### File List
+
+**Created:**
+- `.gitignore` - Comprehensive ignore patterns for monorepo
+- `pnpm-workspace.yaml` - Workspace configuration for apps and packages
+- `turbo.json` - Turborepo task pipeline configuration (v2 format with `tasks`)
+- `apps/web/.gitkeep` - Placeholder for Next.js app
+- `apps/api/.gitkeep` - Placeholder for NestJS backend
+- `packages/contracts/.gitkeep` - Placeholder for Hardhat contracts
+- `packages/types/.gitkeep` - Placeholder for shared TypeScript types
+- `packages/ui/.gitkeep` - Placeholder for shadcn/ui components
+- `packages/config/.gitkeep` - Placeholder for shared configs
+
+**Modified:**
+- `package.json` - Updated with monorepo name, scripts, and metadata
 
