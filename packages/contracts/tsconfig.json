@@ -12,6 +12,5 @@
     "declarationMap": true,
     "sourceMap": true
   },
-  "include": ["./scripts", "./test", "./ignition"],
-  "files": ["./hardhat.config.ts"]
+  "include": ["./scripts", "./test", "./ignition"]
 }

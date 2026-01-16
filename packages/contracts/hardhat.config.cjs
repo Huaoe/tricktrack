@@ -1,13 +1,13 @@
-import { HardhatUserConfig } from "hardhat/config";
-import "@nomicfoundation/hardhat-toolbox";
-import "@nomicfoundation/hardhat-ignition-ethers";
-import "hardhat-gas-reporter";
-import "solidity-coverage";
-import * as dotenv from "dotenv";
+require("@nomicfoundation/hardhat-ethers");
+require("@nomicfoundation/hardhat-chai-matchers");
+require("@typechain/hardhat");
+require("hardhat-gas-reporter");
+require("solidity-coverage");
+const dotenv = require("dotenv");
 
 dotenv.config();
 
-const config: HardhatUserConfig = {
+const config = {
   solidity: {
     version: "0.8.20",
     settings: {
@@ -25,12 +25,12 @@ const config: HardhatUserConfig = {
       url: "http://127.0.0.1:8545",
     },
     polygonMumbai: {
-      url: process.env.ALCHEMY_POLYGON_MUMBAI_URL || "",
+      url: process.env.ALCHEMY_POLYGON_MUMBAI_URL || "https://polygon-mumbai.g.alchemy.com/v2/YOUR_API_KEY",
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       chainId: 80002,
     },
     polygon: {
-      url: process.env.ALCHEMY_POLYGON_URL || "",
+      url: process.env.ALCHEMY_POLYGON_URL || "https://polygon-mainnet.g.alchemy.com/v2/YOUR_API_KEY",
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       chainId: 137,
     },
@@ -55,4 +55,4 @@ const config: HardhatUserConfig = {
   },
 };
 
-export default config;
+module.exports = config;
