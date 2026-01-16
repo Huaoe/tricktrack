@@ -489,10 +489,20 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 🔗 Links
 
-- **Documentation**: [docs/](docs/)
+### Documentation
+- **Deployment Guide**: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)
+- **Environment Variables**: [docs/ENVIRONMENT_VARIABLES.md](docs/ENVIRONMENT_VARIABLES.md)
+- **Domain Configuration**: [docs/DOMAIN_CONFIGURATION.md](docs/DOMAIN_CONFIGURATION.md)
+- **Monitoring**: [docs/MONITORING.md](docs/MONITORING.md)
+- **Troubleshooting**: [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)
+
+### Project Artifacts
 - **Architecture**: [_bmad-output/planning-artifacts/architecture.md](_bmad-output/planning-artifacts/architecture.md)
 - **PRD**: [_bmad-output/planning-artifacts/prd.md](_bmad-output/planning-artifacts/prd.md)
 - **Sprint Status**: [_bmad-output/implementation-artifacts/sprint-status.yaml](_bmad-output/implementation-artifacts/sprint-status.yaml)
+
+### Smart Contracts
+- **Contract Deployment**: [packages/contracts/scripts/DEPLOYMENT.md](packages/contracts/scripts/DEPLOYMENT.md)
 
 ---
 

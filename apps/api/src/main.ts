@@ -10,9 +10,44 @@ async function bootstrap() {
   app.setGlobalPrefix('api/v1');
 
   // CORS configuration
+  const allowedOrigins = [
+    process.env.FRONTEND_URL || 'http://localhost:3000',
+    'http://localhost:3000',
+    'https://*.vercel.app', // Vercel preview deployments
+  ];
+
+  // Add production domain if configured
+  if (process.env.PRODUCTION_DOMAIN) {
+    allowedOrigins.push(process.env.PRODUCTION_DOMAIN);
+  }
+
   app.enableCors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    origin: (
+      origin: string | undefined,
+      callback: (error: Error | null, allow?: boolean) => void,
+    ) => {
+      // Allow requests with no origin (mobile apps, Postman, etc.)
+      if (!origin) return callback(null, true);
+
+      // Check if origin matches allowed patterns
+      const isAllowed = allowedOrigins.some((allowedOrigin) => {
+        if (allowedOrigin.includes('*')) {
+          // Wildcard pattern matching
+          const pattern = allowedOrigin.replace(/\*/g, '.*');
+          return new RegExp(`^${pattern}$`).test(origin);
+        }
+        return allowedOrigin === origin;
+      });
+
+      if (isAllowed) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   });
 
   // Global validation pipe
@@ -42,4 +77,4 @@ async function bootstrap() {
     `Application is running on: http://localhost:${process.env.PORT ?? 3001}`,
   );
 }
-bootstrap();
+void bootstrap();

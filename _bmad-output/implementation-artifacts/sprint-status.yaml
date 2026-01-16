@@ -53,17 +53,23 @@ development_status:
   1-5-create-shared-typescript-types-package: review
   1-6-set-up-shadcn-ui-components-package: review
   1-7-configure-shared-eslint-typescript-and-tailwind-configs: review
-  1-8-set-up-deployment-pipelines-vercel-railway-polygon: ready-for-dev
+  1-8-set-up-deployment-pipelines-vercel-railway-polygon: review
   epic-1-retrospective: optional
 
   # Epic 2: Wallet Connection & User Authentication
   epic-2: in-progress
-  2-1-integrate-web3auth-for-in-app-wallet-creation: ready-for-dev
-  2-2-integrate-web3modal-for-external-wallet-connection: ready-for-dev
-  2-3-implement-social-recovery-for-in-app-wallets: ready-for-dev
-  2-4-display-wallet-address-and-copy-to-clipboard: ready-for-dev
-  2-5-export-private-key-or-seed-phrase-securely: ready-for-dev
-  2-6-implement-session-management-and-auto-logout: ready-for-dev
+  2-1-1-web3auth-setup-and-configuration: ready-for-dev
+  2-1-2-web3auth-ui-and-user-integration: ready-for-dev
+  2-2-1-web3modal-wagmi-setup-and-configuration: ready-for-dev
+  2-2-2-wallet-connection-ui-and-network-validation: ready-for-dev
+  2-3-1-configure-web3auth-mfa-for-social-recovery: ready-for-dev
+  2-3-2-implement-recovery-flow-ui-and-device-management: ready-for-dev
+  2-4-1-display-wallet-address-and-copy-functionality: ready-for-dev
+  2-4-2-qr-code-generation-and-download: ready-for-dev
+  2-5-1-security-warnings-and-authentication-flow: ready-for-dev
+  2-5-2-private-key-export-implementation: ready-for-dev
+  2-6-1-jwt-backend-and-middleware: ready-for-dev
+  2-6-2-frontend-session-management-and-protected-routes: ready-for-dev
   epic-2-retrospective: optional
 
   # Epic 3: Friend Connection Network via QR Codes

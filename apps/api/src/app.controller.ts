@@ -17,10 +17,19 @@ export class AppController {
   @Get('health')
   @ApiOperation({ summary: 'Health check endpoint' })
   @ApiResponse({ status: 200, description: 'API is healthy' })
-  healthCheck(): { status: string; timestamp: string } {
+  healthCheck(): {
+    status: string;
+    timestamp: string;
+    uptime: number;
+    environment: string;
+    version: string;
+  } {
     return {
       status: 'ok',
       timestamp: new Date().toISOString(),
+      uptime: process.uptime(),
+      environment: process.env.NODE_ENV || 'development',
+      version: '1.0.0',
     };
   }
 }

@@ -1,0 +1,48 @@
+{
+  "buildCommand": "cd ../.. && pnpm turbo run build --filter=web",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "devCommand": "pnpm dev",
+  "env": {
+    "NEXT_PUBLIC_API_URL": "@api-url",
+    "NEXT_PUBLIC_ALCHEMY_API_KEY": "@alchemy-api-key",
+    "NEXT_PUBLIC_CHAIN_ID": "@chain-id",
+    "NEXT_PUBLIC_WEB3AUTH_CLIENT_ID": "@web3auth-client-id"
+  },
+  "build": {
+    "env": {
+      "TURBO_TOKEN": "@turbo-token",
+      "TURBO_TEAM": "@turbo-team"
+    }
+  },
+  "regions": ["iad1"],
+  "headers": [
+    {
+      "source": "/sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ]
+}
