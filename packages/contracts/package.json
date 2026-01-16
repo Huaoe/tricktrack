@@ -1,13 +1,31 @@
 {
-  "name": "contracts",
+  "name": "@tricktrack/contracts",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
+  "description": "Smart contracts for TrickTrack platform",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "test:coverage": "hardhat coverage",
+    "test:gas": "REPORT_GAS=true hardhat test",
+    "node": "hardhat node",
+    "deploy:local": "hardhat ignition deploy ignition/modules/Deploy.ts --network localhost",
+    "deploy:mumbai": "hardhat ignition deploy ignition/modules/Deploy.ts --network polygonMumbai --verify",
+    "deploy:polygon": "hardhat ignition deploy ignition/modules/Deploy.ts --network polygon --verify",
+    "verify": "hardhat verify",
+    "clean": "hardhat clean"
   },
-  "keywords": [],
+  "keywords": ["hardhat", "solidity", "polygon", "smart-contracts"],
   "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.22.0"
+  "license": "MIT",
+  "packageManager": "pnpm@10.22.0",
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.4.0",
+    "@openzeppelin/contracts-upgradeable": "^5.4.0"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-utils": "^3.0.5"
+  }
 }
