@@ -3,6 +3,14 @@ import withPWA from "@ducanh2912/next-pwa";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  outputFileTracingExcludes: {
+    '*': [
+      'node_modules/@img/sharp-libvips-linux-x64',
+      'node_modules/@img/sharp-libvips-linuxmusl-x64',
+      'node_modules/@img/sharp-darwin-x64',
+      'node_modules/@img/sharp-darwin-arm64',
+    ],
+  },
 };
 
 export default withPWA({
