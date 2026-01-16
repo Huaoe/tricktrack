@@ -1,0 +1,168 @@
+# Sprint Status - TrickTrack Project
+# Generated: 2026-01-16
+# This file tracks all epics and stories through the development lifecycle
+
+# generated: 2026-01-16
+# project: tricktrack
+# project_key: tricktrack
+# tracking_system: file-system
+# story_location: c:/Users/thoma/OneDrive/Documents/Projects/tricktrack/_bmad-output/implementation-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Epic Status Transitions:
+#   - backlog → in-progress: Automatically when first story is created (via create-story)
+#   - in-progress → done: Manually when all stories reach 'done' status
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - ready-for-dev: Story file created in stories folder
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review (via Dev's code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - done: Retrospective has been completed
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epic transitions to 'in-progress' automatically when first story is created
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically creates next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
+
+generated: 2026-01-16
+project: tricktrack
+project_key: tricktrack
+tracking_system: file-system
+story_location: c:/Users/thoma/OneDrive/Documents/Projects/tricktrack/_bmad-output/implementation-artifacts
+
+development_status:
+  # Epic 1: Project Foundation & Monorepo Setup
+  epic-1: in-progress
+  1-1-initialize-turborepo-monorepo-with-pnpm-workspaces: ready-for-dev
+  1-2-set-up-nextjs-15-pwa-in-apps-web: ready-for-dev
+  1-3-set-up-nestjs-backend-in-apps-api: backlog
+  1-4-set-up-hardhat-for-smart-contract-development: backlog
+  1-5-create-shared-typescript-types-package: backlog
+  1-6-set-up-shadcn-ui-components-package: backlog
+  1-7-configure-shared-eslint-typescript-and-tailwind-configs: backlog
+  1-8-set-up-deployment-pipelines-vercel-railway-polygon: backlog
+  epic-1-retrospective: optional
+
+  # Epic 2: Wallet Connection & User Authentication
+  epic-2: backlog
+  2-1-integrate-web3auth-for-in-app-wallet-creation: backlog
+  2-2-integrate-web3modal-for-external-wallet-connection: backlog
+  2-3-implement-social-recovery-for-in-app-wallets: backlog
+  2-4-display-wallet-address-and-copy-to-clipboard: backlog
+  2-5-export-private-key-or-seed-phrase-securely: backlog
+  2-6-implement-session-management-and-auto-logout: backlog
+  epic-2-retrospective: optional
+
+  # Epic 3: Friend Connection Network via QR Codes
+  epic-3: backlog
+  3-1-generate-ecdsa-signed-qr-code-for-friend-connection: backlog
+  3-2-scan-qr-code-to-establish-mutual-validation-rights: backlog
+  3-3-view-list-of-connected-friends: backlog
+  3-4-remove-friends-from-validation-network: backlog
+  3-5-display-friend-connection-status-pending-active-removed: backlog
+  epic-3-retrospective: optional
+
+  # Epic 4: Smart Contract Deployment (Token & Validation)
+  epic-4: backlog
+  4-1-develop-trktrktoken-sol-erc-20-token-contract: backlog
+  4-2-develop-validationmanager-sol-validation-reward-contract: backlog
+  4-3-develop-nftbadgefactory-sol-erc-721-badge-contract: backlog
+  4-4-develop-daointegration-sol-aragon-dao-interface: backlog
+  4-5-develop-treasurymanager-sol-dao-treasury-contract: backlog
+  4-6-deploy-smart-contracts-to-polygon-mumbai-testnet: backlog
+  4-7-deploy-smart-contracts-to-polygon-mainnet: backlog
+  4-8-implement-rpc-provider-failover-alchemy-infura: backlog
+  4-9-implement-gas-price-monitoring-and-transaction-timing: backlog
+  4-10-implement-transaction-queue-and-batch-processing: backlog
+  4-11-verify-on-chain-transaction-status-and-confirmations: backlog
+  epic-4-retrospective: optional
+
+  # Epic 5: Trick Validation & Scoring System
+  epic-5: backlog
+  5-1-upload-video-recordings-of-skateboarding-tricks: backlog
+  5-2-select-trick-type-from-predefined-list: backlog
+  5-3-request-validation-from-3-connected-friends: backlog
+  5-4-validators-view-validation-requests-from-friends: backlog
+  5-5-validators-score-trick-attempts-across-three-criteria: backlog
+  5-6-validators-provide-text-feedback-on-trick-attempts: backlog
+  5-7-view-real-time-validation-progress-and-individual-scores: backlog
+  5-8-retry-failed-validations-with-no-penalty: backlog
+  5-9-system-aggregates-validator-scores-and-determines-consensus-90-threshold: backlog
+  5-10-system-distributes-base-trick-rewards-on-validation-success: backlog
+  epic-5-retrospective: optional
+
+  # Epic 6: Token Rewards & Transaction History
+  epic-6: backlog
+  6-1-view-trktrk-token-balance-in-real-time: backlog
+  6-2-view-transaction-history-with-timestamps-and-amounts: backlog
+  6-3-system-distributes-tokens-by-difficulty-tier-10-100-tokens: backlog
+  6-4-validators-earn-bonus-tokens-5-trktrk-per-filmed-validation: backlog
+  6-5-view-pending-token-distributions-before-validation-completes: backlog
+  6-6-system-processes-token-distributions-via-smart-contract: backlog
+  epic-6-retrospective: optional
+
+  # Epic 7: NFT Badge System
+  epic-7: backlog
+  7-1-earn-nft-badges-automatically-on-achievement-milestones: backlog
+  7-2-view-badge-collection-in-gallery: backlog
+  7-3-view-badge-metadata-name-description-unlock-criteria-mint-date: backlog
+  7-4-system-mints-tiered-badges-bronze-silver-gold: backlog
+  7-5-share-badge-achievements-to-social-media: backlog
+  7-6-verify-badge-authenticity-on-chain-via-blockchain-explorer: backlog
+  epic-7-retrospective: optional
+
+  # Epic 8: Sponsor Challenges
+  epic-8: backlog
+  8-1-discover-active-sponsor-challenges-in-app-feed: backlog
+  8-2-view-challenge-details-reward-duration-requirements-sponsor-info: backlog
+  8-3-join-sponsor-challenges-and-submit-trick-attempts: backlog
+  8-4-system-distributes-challenge-rewards-in-addition-to-base-rewards: backlog
+  8-5-earn-custom-sponsor-nft-badges-on-challenge-completion: backlog
+  8-6-view-challenge-participation-status-and-remaining-time: backlog
+  8-7-system-automatically-ends-challenges-when-max-participants-reached-or-time-expires: backlog
+  epic-8-retrospective: optional
+
+  # Epic 9: DAO Treasury & Token Management
+  epic-9: backlog
+  9-1-system-manages-dao-treasury-wallet-with-multi-sig-controls: backlog
+  9-2-admins-approve-token-transfers-from-treasury: backlog
+  9-3-system-tracks-token-allocation-across-pools: backlog
+  9-4-system-enforces-vesting-schedules-for-team-advisor-tokens: backlog
+  9-5-admins-view-treasury-balance-and-transaction-history: backlog
+  epic-9-retrospective: optional
+
+  # Epic 10: Admin Operations & Fraud Detection
+  epic-10: backlog
+  10-1-admins-view-fraud-detection-dashboard-with-validator-score-patterns: backlog
+  10-2-admins-flag-suspicious-accounts-for-manual-review: backlog
+  10-3-admins-freeze-or-suspend-user-accounts: backlog
+  10-4-admins-unfreeze-accounts-after-investigation: backlog
+  10-5-admins-view-anomaly-alerts-for-statistical-outliers: backlog
+  10-6-admins-manually-create-sponsor-challenges-via-backoffice-panel: backlog
+  10-7-admins-transfer-tokens-from-treasury-to-sponsor-wallets: backlog
+  10-8-admins-view-gas-cost-monitoring-and-batch-processing-metrics: backlog
+  10-9-admins-trigger-emergency-pause-on-smart-contracts: backlog
+  10-10-admins-view-platform-wide-analytics: backlog
+  epic-10-retrospective: optional
+
+  # Epic 11: Compliance & Data Privacy
+  epic-11: backlog
+  11-1-system-tracks-user-consent-for-data-processing-gdpr: backlog
+  11-2-system-provides-data-export-functionality-for-user-data-requests: backlog
+  11-3-system-deletes-user-data-on-account-deletion-requests: backlog
+  11-4-admins-access-audit-logs-for-all-administrative-actions: backlog
+  11-5-system-enforces-rate-limiting-on-validation-requests-and-wallet-creation: backlog
+  epic-11-retrospective: optional
