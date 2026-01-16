@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ducanh2912/next-pwa": "^10.2.9",
+    "@tricktrack/types": "workspace:*",
     "next": "16.1.2",
     "react": "19.2.3",
     "react-dom": "19.2.3"
