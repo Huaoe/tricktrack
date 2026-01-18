@@ -7,7 +7,7 @@
 You are executing the BMAD (Business-Managed Agile Development) methodology.
 Follow these instructions EXACTLY:
 ## EPIC SCOPE
-Focus ONLY on these epics: Epic1
+Focus ONLY on these epics: Epic2
 
 ## 1. Story Discovery & Selection
 - Load config from @_bmad/bmm/config.yaml (user_name, project_name, skill_level)

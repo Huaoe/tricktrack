@@ -21,8 +21,11 @@ This guide provides step-by-step instructions for deploying the TrickTrack platf
 - [ ] Railway account (sign up at https://railway.app)
 - [ ] Alchemy account (sign up at https://www.alchemy.com)
 - [ ] Supabase account (for database)
-- [ ] AWS account (for S3 storage)
+- [ ] Cloudflare account (for R2 storage)
+- [ ] Arweave wallet (for NFT metadata storage)
+- [ ] The Graph account (for blockchain indexing)
 - [ ] Web3Auth account (for wallet authentication)
+- [ ] Google Analytics account (for analytics)
 
 ### Required Tools
 - [ ] Node.js 20+ installed
@@ -182,16 +185,21 @@ DATABASE_URL=postgresql://user:password@host:port/database
 JWT_SECRET=<generate_with_openssl_rand_-base64_32>
 JWT_EXPIRATION=7d
 
-# Blockchain
+# Blockchain (Mainnet only)
 ALCHEMY_POLYGON_URL=https://polygon-mainnet.g.alchemy.com/v2/<YOUR_KEY>
-ALCHEMY_POLYGON_MUMBAI_URL=https://polygon-mumbai.g.alchemy.com/v2/<YOUR_KEY>
-INFURA_POLYGON_URL=https://polygon-mainnet.infura.io/v3/<YOUR_KEY>
 
-# AWS S3
-AWS_ACCESS_KEY_ID=<your_aws_access_key>
-AWS_SECRET_ACCESS_KEY=<your_aws_secret_key>
-AWS_S3_BUCKET=<your_bucket_name>
-AWS_REGION=us-east-1
+# Cloudflare R2 (Video Storage)
+CLOUDFLARE_R2_ACCOUNT_ID=<your_account_id>
+CLOUDFLARE_R2_ACCESS_KEY_ID=<your_r2_access_key>
+CLOUDFLARE_R2_SECRET_ACCESS_KEY=<your_r2_secret>
+CLOUDFLARE_R2_BUCKET=tricktrack-videos
+CLOUDFLARE_R2_PUBLIC_URL=<your_r2_public_url>
+
+# Arweave (NFT Metadata)
+ARWEAVE_WALLET_KEY=<your_arweave_wallet_key>
+
+# The Graph (Blockchain Indexing)
+GRAPH_API_KEY=<your_graph_api_key>
 
 # Web3Auth
 WEB3AUTH_VERIFIER_NAME=<your_verifier>
@@ -263,53 +271,38 @@ pnpm test:gas
 
 1. Create `.env` file:
 ```env
-ALCHEMY_POLYGON_MUMBAI_URL=https://polygon-mumbai.g.alchemy.com/v2/YOUR_KEY
 ALCHEMY_POLYGON_URL=https://polygon-mainnet.g.alchemy.com/v2/YOUR_KEY
 PRIVATE_KEY=your_wallet_private_key
 POLYGONSCAN_API_KEY=your_polygonscan_api_key
 ```
 
 2. Fund deployer wallet:
-   - Mumbai: Get free MATIC from [Mumbai Faucet](https://faucet.polygon.technology/)
-   - Polygon: Purchase MATIC (minimum 0.1 MATIC recommended)
+   - Purchase MATIC (minimum 0.5 MATIC recommended for deployment + testing)
+   - Polygon Mainnet gas fees are very low (~$0.01 per transaction)
 
-### Step 3: Deploy to Mumbai (Testnet)
+### Step 3: Deploy to Polygon (Mainnet)
 
-```bash
-# Deploy all contracts
-pnpm deploy:mumbai
-
-# Save contract addresses from output
-# Update .env files:
-TOKEN_ADDRESS=0x...
-VALIDATION_MANAGER_ADDRESS=0x...
-NFT_BADGE_FACTORY_ADDRESS=0x...
-```
-
-### Step 4: Test on Mumbai
-
-1. Test contract interactions from frontend
-2. Test validation flow
-3. Test token transfers
-4. Monitor transactions on [Mumbai Polygonscan](https://mumbai.polygonscan.com/)
-
-### Step 5: Deploy to Polygon (Mainnet)
-
-> ⚠️ **WARNING**: Production deployment - double-check everything!
+> ⚠️ **NOTE**: Polygon Mainnet is production-ready with low gas fees (~$0.01/tx)
 
 ```bash
 # Final checks
 pnpm test
 pnpm test:coverage
 
-# Deploy to mainnet
+# Deploy to Polygon Mainnet
 pnpm deploy:polygon
 
 # Save contract addresses
 # CRITICAL: Back up these addresses immediately!
 ```
 
-### Step 6: Verify Contracts
+**Why skip testnet?**
+- Polygon Mainnet gas fees are extremely low (~$0.01 per transaction)
+- Production environment from day one
+- No need to migrate from testnet to mainnet later
+- Real-world testing with minimal cost
+
+### Step 4: Verify Contracts
 
 ```bash
 # Set contract addresses in .env
@@ -321,7 +314,7 @@ export NFT_BADGE_FACTORY_ADDRESS=0x...
 pnpm verify:contracts
 ```
 
-### Step 7: Update Environment Variables
+### Step 5: Update Environment Variables
 
 Update contract addresses in:
 - Vercel (frontend)
@@ -372,7 +365,7 @@ open https://polygonscan.com/address/<TOKEN_ADDRESS>
 ### 3. Configure Monitoring
 
 - [ ] Set up uptime monitoring (UptimeRobot, BetterUptime)
-- [ ] Configure error tracking (Sentry)
+- [ ] Set up Google Analytics
 - [ ] Set up analytics (Vercel Analytics)
 - [ ] Configure alerts for downtime
 

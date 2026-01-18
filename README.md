@@ -91,12 +91,12 @@ TrickTrack follows a **monorepo architecture** using Turborepo with pnpm workspa
                   ▼
 ┌─────────────────────────────────────────────────────────────┐
 │              Infrastructure & Services                      │
-│  • Alchemy/Infura (RPC Providers)                          │
+│  • Alchemy (RPC Provider)                                  │
 │  • The Graph (Blockchain Indexing)                         │
-│  • AWS S3 + CloudFront (Video Storage/CDN)                 │
-│  • IPFS/Arweave (NFT Metadata)                             │
+│  • Cloudflare R2 (Video Storage/CDN)                       │
+│  • Arweave (NFT Metadata - Permanent Storage)              │
 │  • Supabase (Off-chain Database)                           │
-│  • Datadog (Monitoring)                                     │
+│  • Google Analytics (Analytics)                            │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -123,22 +123,23 @@ TrickTrack follows a **monorepo architecture** using Turborepo with pnpm workspa
 ### Backend
 - **Framework**: Nest.js
 - **Database**: Supabase (PostgreSQL)
-- **Storage**: AWS S3 + CloudFront CDN
+- **Storage**: Cloudflare R2 (S3-compatible, zero egress fees)
+- **NFT Storage**: Arweave (permanent storage)
 - **Auth**: JWT + Web3 signature verification
 
 ### Blockchain
-- **Network**: Polygon (Mumbai testnet → Mainnet)
+- **Network**: Polygon Mainnet (production-ready, low gas fees)
 - **Language**: Solidity 0.8.x
 - **Framework**: Hardhat + Hardhat Ignition
 - **Libraries**: OpenZeppelin (upgradeable contracts)
-- **Indexing**: The Graph
-- **RPC**: Alchemy + Infura (failover)
+- **Indexing**: The Graph (blockchain event indexing)
+- **RPC**: Alchemy
 
 ### DevOps
 - **Monorepo**: Turborepo + pnpm workspaces
 - **CI/CD**: GitHub Actions
 - **Deployment**: Vercel (frontend), Railway (backend)
-- **Monitoring**: Datadog, Sentry
+- **Analytics**: Google Analytics
 - **Testing**: Vitest, Playwright, Hardhat
 
 ---
@@ -286,19 +287,26 @@ ANTHROPIC_API_KEY=sk-ant-api03-...
 Create `.env.local` files in each app directory as needed:
 
 ```bash
-# Blockchain
+# Blockchain (Polygon Mainnet)
 ALCHEMY_API_KEY=your_alchemy_key
-INFURA_API_KEY=your_infura_key
 POLYGON_PRIVATE_KEY=your_deployer_private_key
+POLYGON_RPC_URL=https://polygon-mainnet.g.alchemy.com/v2/YOUR_KEY
 
 # Backend
 DATABASE_URL=your_supabase_url
 JWT_SECRET=your_jwt_secret
 
-# Storage
-AWS_ACCESS_KEY_ID=your_aws_key
-AWS_SECRET_ACCESS_KEY=your_aws_secret
-AWS_S3_BUCKET=tricktrack-videos
+# Video Storage (Cloudflare R2)
+CLOUDFLARE_R2_ACCOUNT_ID=your_account_id
+CLOUDFLARE_R2_ACCESS_KEY_ID=your_r2_access_key
+CLOUDFLARE_R2_SECRET_ACCESS_KEY=your_r2_secret
+CLOUDFLARE_R2_BUCKET=tricktrack-videos
+
+# NFT Metadata (Arweave)
+ARWEAVE_WALLET_KEY=your_arweave_wallet_key
+
+# Blockchain Indexing (The Graph)
+GRAPH_API_KEY=your_graph_api_key
 ```
 
 ### Running Tests

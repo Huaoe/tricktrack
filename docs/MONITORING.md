@@ -195,42 +195,48 @@ Monitor these endpoints:
 - Availability < 99.5%
 - Status code != 200
 
-## Error Tracking
+## Analytics
 
-### Recommended Tools
+### Google Analytics 4
 
-1. **Sentry** (Recommended):
-   ```bash
-   # Install Sentry
-   pnpm add @sentry/nextjs @sentry/node
-   ```
+**Setup** (`apps/web/app/layout.tsx`):
+```typescript
+import Script from 'next/script';
 
-   **Frontend Setup** (`apps/web/sentry.config.ts`):
-   ```typescript
-   import * as Sentry from '@sentry/nextjs';
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+      </head>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
 
-   Sentry.init({
-     dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-     environment: process.env.NODE_ENV,
-     tracesSampleRate: 1.0,
-   });
-   ```
+**Environment Variable**:
+```env
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+```
 
-   **Backend Setup** (`apps/api/src/main.ts`):
-   ```typescript
-   import * as Sentry from '@sentry/node';
-
-   Sentry.init({
-     dsn: process.env.SENTRY_DSN,
-     environment: process.env.NODE_ENV,
-     tracesSampleRate: 1.0,
-   });
-   ```
-
-2. **LogRocket** (Session Replay):
-   - Record user sessions
-   - Debug production issues
-   - Performance monitoring
+**Features**:
+- User behavior tracking
+- Page views and events
+- Conversion tracking
+- Real-time analytics
+- Free tier sufficient for most needs
 
 ## Performance Monitoring
 
@@ -298,7 +304,6 @@ Monitor deployed smart contracts:
 ### RPC Provider Monitoring
 Monitor RPC provider status:
 - Alchemy status: https://status.alchemy.com/
-- Infura status: https://status.infura.io/
 
 ## Alert Configuration
 
@@ -326,20 +331,23 @@ Monitor RPC provider status:
 
 ### Recommended Setup
 
-1. **Grafana** (Free, self-hosted):
-   - Centralized dashboard
-   - Custom metrics
-   - Alert management
+1. **Vercel Analytics** (Built-in):
+   - Web Vitals monitoring
+   - Page performance
+   - Visitor analytics
+   - Free with Vercel
 
-2. **Datadog** (Paid):
-   - All-in-one monitoring
-   - APM and logs
-   - Infrastructure monitoring
+2. **Railway Metrics** (Built-in):
+   - Resource usage
+   - Request metrics
+   - Error rates
+   - Free with Railway
 
-3. **New Relic** (Free tier):
-   - Application monitoring
-   - Browser monitoring
-   - Synthetic monitoring
+3. **Google Analytics 4** (Free):
+   - User behavior
+   - Conversion tracking
+   - Custom events
+   - Real-time data
 
 ## Logs
 
@@ -453,5 +461,5 @@ Add to CI pipeline:
 
 - [Vercel Monitoring Docs](https://vercel.com/docs/analytics)
 - [Railway Monitoring Docs](https://docs.railway.app/deploy/monitoring)
-- [Sentry Documentation](https://docs.sentry.io/)
+- [Google Analytics 4 Docs](https://support.google.com/analytics/)
 - [UptimeRobot Setup Guide](https://blog.uptimerobot.com/)

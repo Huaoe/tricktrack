@@ -10,7 +10,7 @@ Create `.env.local` file in `apps/web/`:
 # API Configuration
 NEXT_PUBLIC_API_URL=http://localhost:3001
 
-# Blockchain Configuration
+# Blockchain Configuration (Alchemy only)
 NEXT_PUBLIC_ALCHEMY_API_KEY=your_alchemy_api_key_here
 NEXT_PUBLIC_CHAIN_ID=137
 
@@ -33,11 +33,12 @@ Set these secrets in your Vercel dashboard:
 1. **Environment Variables** (Settings → Environment Variables):
    - `NEXT_PUBLIC_API_URL` = `https://your-api.railway.app`
    - `NEXT_PUBLIC_ALCHEMY_API_KEY` = `<from Alchemy dashboard>`
-   - `NEXT_PUBLIC_CHAIN_ID` = `137`
+   - `NEXT_PUBLIC_CHAIN_ID` = `137` (Polygon Mainnet only)
    - `NEXT_PUBLIC_WEB3AUTH_CLIENT_ID` = `<from Web3Auth dashboard>`
    - `NEXT_PUBLIC_TOKEN_ADDRESS` = `<deployed contract address>`
    - `NEXT_PUBLIC_VALIDATION_MANAGER_ADDRESS` = `<deployed contract address>`
    - `NEXT_PUBLIC_NFT_BADGE_FACTORY_ADDRESS` = `<deployed contract address>`
+   - `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID` = `<from Google Analytics>`
 
 2. **Build Environment Variables**:
    - `TURBO_TOKEN` = `<from Vercel Remote Cache>`
@@ -62,21 +63,26 @@ DATABASE_URL=postgresql://user:password@host:port/database
 JWT_SECRET=your_jwt_secret_here_change_in_production
 JWT_EXPIRATION=7d
 
-# Blockchain Configuration
+# Blockchain Configuration (Alchemy only, Mainnet only)
 ALCHEMY_POLYGON_URL=https://polygon-mainnet.g.alchemy.com/v2/YOUR_API_KEY
-ALCHEMY_POLYGON_MUMBAI_URL=https://polygon-mumbai.g.alchemy.com/v2/YOUR_API_KEY
-INFURA_POLYGON_URL=https://polygon-mainnet.infura.io/v3/YOUR_PROJECT_ID
 
 # Contract Addresses (deployed after Story 4.6/4.7)
 TOKEN_ADDRESS=
 VALIDATION_MANAGER_ADDRESS=
 NFT_BADGE_FACTORY_ADDRESS=
 
-# AWS S3 Configuration (for video storage)
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
-AWS_S3_BUCKET=
-AWS_REGION=us-east-1
+# Cloudflare R2 Configuration (for video storage)
+CLOUDFLARE_R2_ACCOUNT_ID=
+CLOUDFLARE_R2_ACCESS_KEY_ID=
+CLOUDFLARE_R2_SECRET_ACCESS_KEY=
+CLOUDFLARE_R2_BUCKET=tricktrack-videos
+CLOUDFLARE_R2_PUBLIC_URL=
+
+# Arweave Configuration (for NFT metadata storage)
+ARWEAVE_WALLET_KEY=
+
+# The Graph Configuration (for blockchain indexing)
+GRAPH_API_KEY=
 
 # Web3Auth Configuration
 WEB3AUTH_VERIFIER_NAME=
@@ -99,15 +105,16 @@ Set these secrets in your Railway dashboard:
    - `JWT_SECRET` = `<generate with: openssl rand -base64 32>`
    - `JWT_EXPIRATION` = `7d`
    - `ALCHEMY_POLYGON_URL` = `<from Alchemy dashboard>`
-   - `ALCHEMY_POLYGON_MUMBAI_URL` = `<from Alchemy dashboard>`
-   - `INFURA_POLYGON_URL` = `<from Infura dashboard>`
    - `TOKEN_ADDRESS` = `<deployed contract address>`
    - `VALIDATION_MANAGER_ADDRESS` = `<deployed contract address>`
    - `NFT_BADGE_FACTORY_ADDRESS` = `<deployed contract address>`
-   - `AWS_ACCESS_KEY_ID` = `<from AWS IAM>`
-   - `AWS_SECRET_ACCESS_KEY` = `<from AWS IAM>`
-   - `AWS_S3_BUCKET` = `<your bucket name>`
-   - `AWS_REGION` = `us-east-1`
+   - `CLOUDFLARE_R2_ACCOUNT_ID` = `<from Cloudflare dashboard>`
+   - `CLOUDFLARE_R2_ACCESS_KEY_ID` = `<from Cloudflare R2 API tokens>`
+   - `CLOUDFLARE_R2_SECRET_ACCESS_KEY` = `<from Cloudflare R2 API tokens>`
+   - `CLOUDFLARE_R2_BUCKET` = `tricktrack-videos`
+   - `CLOUDFLARE_R2_PUBLIC_URL` = `<your R2 public URL>`
+   - `ARWEAVE_WALLET_KEY` = `<from Arweave wallet>`
+   - `GRAPH_API_KEY` = `<from The Graph dashboard>`
    - `WEB3AUTH_VERIFIER_NAME` = `<from Web3Auth dashboard>`
    - `WEB3AUTH_CLIENT_ID` = `<from Web3Auth dashboard>`
    - `RATE_LIMIT_TTL` = `60`
@@ -118,9 +125,8 @@ Set these secrets in your Railway dashboard:
 Create `.env` file in `packages/contracts/`:
 
 ```env
-# Blockchain RPC URLs
+# Blockchain RPC URLs (Mainnet only)
 ALCHEMY_POLYGON_URL=https://polygon-mainnet.g.alchemy.com/v2/YOUR_API_KEY
-ALCHEMY_POLYGON_MUMBAI_URL=https://polygon-mumbai.g.alchemy.com/v2/YOUR_API_KEY
 
 # Deployer Private Key
 PRIVATE_KEY=your_wallet_private_key
@@ -159,8 +165,8 @@ Configure these secrets in GitHub repository settings (Settings → Secrets and 
 ### Alchemy (Blockchain RPC)
 1. Visit [https://www.alchemy.com/](https://www.alchemy.com/)
 2. Sign up for free account
-3. Create app for "Polygon" and "Polygon Mumbai"
-4. Copy API keys from dashboard
+3. Create app for "Polygon Mainnet"
+4. Copy API key from dashboard
 
 ### Web3Auth (Wallet Authentication)
 1. Visit [https://dashboard.web3auth.io/](https://dashboard.web3auth.io/)
@@ -174,21 +180,50 @@ Configure these secrets in GitHub repository settings (Settings → Secrets and 
 3. Go to API-KEYs section
 4. Create new API key
 
-### AWS S3 (Video Storage)
-1. Log in to AWS Console
-2. Create S3 bucket
-3. Create IAM user with S3 permissions
-4. Generate access keys
+### Cloudflare R2 (Video Storage)
+1. Visit [https://dash.cloudflare.com/](https://dash.cloudflare.com/)
+2. Navigate to R2 Object Storage
+3. Create a new R2 bucket (e.g., `tricktrack-videos`)
+4. Generate R2 API tokens (Manage R2 API Tokens)
+5. Configure public access domain if needed
+
+**Why Cloudflare R2?**
+- S3-compatible API (easy migration)
+- Zero egress fees (AWS charges $0.09/GB)
+- ~90% cheaper than AWS S3
+- Built-in CDN capabilities
 
 ### Supabase (Database)
 1. Visit [https://supabase.com/](https://supabase.com/)
 2. Create new project
 3. Get connection string from project settings
 
-### CoinMarketCap (Gas Price API)
-1. Visit [https://coinmarketcap.com/api/](https://coinmarketcap.com/api/)
-2. Sign up for free API key
-3. Use for gas price estimation
+### Arweave (NFT Metadata Storage)
+1. Visit [https://www.arweave.org/](https://www.arweave.org/)
+2. Create an Arweave wallet
+3. Fund wallet with AR tokens for permanent storage
+4. Export wallet key for backend integration
+
+**Why Arweave?**
+- Permanent storage with one-time payment
+- Ideal for NFT metadata that should never disappear
+- ~$5-10 per GB one-time cost
+
+### The Graph (Blockchain Indexing)
+1. Visit [https://thegraph.com/](https://thegraph.com/)
+2. Create account and deploy subgraph
+3. Get API key for querying indexed data
+
+**Why The Graph?**
+- Efficiently query blockchain events (trick validations, NFT transfers)
+- Without it, you'd need to scan all blocks manually (very slow)
+- Essential for marketplace and leaderboard features
+
+### Google Analytics (Analytics)
+1. Visit [https://analytics.google.com/](https://analytics.google.com/)
+2. Create new property for your app
+3. Get Measurement ID (G-XXXXXXXXXX)
+4. Add to frontend configuration
 
 ## Security Best Practices
 
