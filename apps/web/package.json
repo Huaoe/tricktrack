@@ -14,6 +14,11 @@
     "@ducanh2912/next-pwa": "^10.2.9",
     "@tricktrack/types": "workspace:*",
     "@tricktrack/ui": "workspace:*",
+    "@web3auth/base": "^9.7.0",
+    "@web3auth/ethereum-provider": "^9.7.0",
+    "@web3auth/modal": "^10.13.1",
+    "@web3auth/openlogin-adapter": "^8.12.4",
+    "ethers": "^6.16.0",
     "next": "16.1.2",
     "react": "19.2.3",
     "react-dom": "19.2.3"
